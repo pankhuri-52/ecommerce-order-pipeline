@@ -3,18 +3,26 @@ import json
 import time
 import redis
 import logging
+import os
 from datetime import datetime
+from dotenv import load_dotenv
 
-QUEUE_NAME = "orders"
-LOCALSTACK_URL = "http://localstack:4566"
-REDIS_HOST = "redis"
-REDIS_PORT = 6379
+# Load environment variables
+load_dotenv()
+
+# Configuration from environment variables
+QUEUE_NAME = os.getenv("QUEUE_NAME", "orders")
+LOCALSTACK_URL = os.getenv("LOCALSTACK_URL", "http://localstack:4566")
+REDIS_HOST = os.getenv("REDIS_HOST", "redis")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
 
 # ---------- Logging Setup ----------
 log_filename = f"logs/{datetime.now().strftime('%Y-%m-%d')}.log"
 logging.basicConfig(
     filename=log_filename,
-    level=logging.INFO,
+    level=getattr(logging, LOG_LEVEL),
     format="%(asctime)s - %(levelname)s - %(message)s"
 )
 logger = logging.getLogger()
@@ -24,9 +32,9 @@ def get_sqs_client():
     return boto3.client(
         "sqs",
         endpoint_url=LOCALSTACK_URL,
-        region_name="us-east-1",
-        aws_access_key_id="test",
-        aws_secret_access_key="test"
+        region_name=AWS_REGION,
+        aws_access_key_id=os.getenv("AWS_ACCESS_KEY_ID", "test"),
+        aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY", "test")
     )
 
 # ---------- Redis Connection ----------

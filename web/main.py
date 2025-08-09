@@ -1,10 +1,100 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 import redis
+import time
+import logging
+import os
+from dotenv import load_dotenv
 
-app = FastAPI()
+# Load environment variables
+load_dotenv()
+
+# Configuration from environment variables
+REDIS_HOST = os.getenv("REDIS_HOST", "redis")
+REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
+LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
+
+# Setup logging
+logging.basicConfig(
+    level=getattr(logging, LOG_LEVEL),
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
+logger = logging.getLogger("api")
+
+app = FastAPI(
+    title="E-Commerce Order Pipeline API",
+    description="API for retrieving order statistics and aggregates",
+    version="1.0.0"
+)
 
 # Redis connection
-redis_client = redis.Redis(host="redis", port=6379, decode_responses=True)
+redis_client = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+
+# Request logging middleware
+@app.middleware("http")
+async def log_requests(request: Request, call_next):
+    start_time = time.time()
+    
+    # Log incoming request
+    logger.info(f"➤ {request.method} {request.url.path} - Client: {request.client.host}")
+    
+    # Process request
+    response = await call_next(request)
+    
+    # Calculate processing time
+    process_time = time.time() - start_time
+    
+    # Log response
+    status_emoji = "✅" if response.status_code < 400 else "❌"
+    logger.info(
+        f"{status_emoji} {request.method} {request.url.path} - "
+        f"Status: {response.status_code} - Time: {process_time:.3f}s"
+    )
+    
+    # Add processing time header
+    response.headers["X-Process-Time"] = str(process_time)
+    
+    return response
+
+@app.get("/health")
+def health_check():
+    """Health check endpoint for monitoring service availability"""
+    try:
+        # Test Redis connection
+        ping_time = time.time()
+        redis_client.ping()
+        redis_latency = round((time.time() - ping_time) * 1000, 2)
+        
+        return {
+            "status": "healthy", 
+            "redis": "connected",
+            "redis_latency_ms": redis_latency,
+            "timestamp": time.time()
+        }
+    except Exception as e:
+        logger.error(f"Health check failed: {str(e)}")
+        raise HTTPException(status_code=503, detail=f"Unhealthy: {str(e)}")
+
+@app.get("/metrics")
+def get_metrics():
+    """Metrics endpoint for monitoring system performance"""
+    try:
+        # Basic metrics for monitoring
+        global_stats = redis_client.hgetall("global:stats")
+        users_count = redis_client.zcard("users:by_spend")
+        
+        return {
+            "total_orders": int(global_stats.get("total_orders", 0)),
+            "total_revenue": float(global_stats.get("total_revenue", 0.0)),
+            "unique_users": users_count,
+            "average_order_value": (
+                float(global_stats.get("total_revenue", 0.0)) / 
+                max(int(global_stats.get("total_orders", 1)), 1)
+            ),
+            "timestamp": time.time()
+        }
+    except Exception as e:
+        logger.error(f"Metrics collection failed: {str(e)}")
+        raise HTTPException(status_code=503, detail=f"Metrics unavailable: {str(e)}")
 
 @app.get("/users/{user_id}/stats")
 def get_user_stats(user_id: str):
