@@ -1,0 +1,195 @@
+2025-08-09 11:22:05,213 - INFO - Worker started, listening to queue: orders
+2025-08-09 11:22:10,221 - INFO - No messages found
+2025-08-09 11:22:17,234 - INFO - No messages found
+2025-08-09 11:22:24,252 - INFO - No messages found
+2025-08-09 11:22:31,266 - INFO - No messages found
+2025-08-09 11:22:38,284 - INFO - No messages found
+2025-08-09 11:22:40,296 - INFO - Processed order: ORD1234 for user U5678, value 99.99
+2025-08-09 11:22:47,315 - INFO - No messages found
+2025-08-09 11:22:54,332 - INFO - No messages found
+2025-08-09 11:23:01,346 - INFO - No messages found
+2025-08-09 11:23:08,367 - INFO - No messages found
+2025-08-09 11:23:15,387 - INFO - No messages found
+2025-08-09 11:23:22,398 - INFO - No messages found
+2025-08-09 11:23:29,407 - INFO - No messages found
+2025-08-09 11:23:36,426 - INFO - No messages found
+2025-08-09 11:23:43,445 - INFO - No messages found
+2025-08-09 11:23:50,459 - INFO - No messages found
+2025-08-09 11:23:57,475 - INFO - No messages found
+2025-08-09 11:24:04,491 - INFO - No messages found
+2025-08-09 11:24:11,510 - INFO - No messages found
+2025-08-09 11:24:18,531 - INFO - No messages found
+2025-08-09 11:24:25,545 - INFO - No messages found
+2025-08-09 11:24:32,558 - INFO - No messages found
+2025-08-09 11:24:39,576 - INFO - No messages found
+2025-08-09 11:24:46,596 - INFO - No messages found
+2025-08-09 11:24:53,609 - INFO - No messages found
+2025-08-09 11:25:00,625 - INFO - No messages found
+2025-08-09 11:25:07,635 - INFO - No messages found
+2025-08-09 11:25:14,650 - INFO - No messages found
+2025-08-09 11:25:21,665 - INFO - No messages found
+2025-08-09 11:25:28,679 - INFO - No messages found
+2025-08-09 11:25:35,696 - INFO - No messages found
+2025-08-09 11:25:42,713 - INFO - No messages found
+2025-08-09 11:25:49,732 - INFO - No messages found
+2025-08-09 11:25:56,748 - INFO - No messages found
+2025-08-09 11:26:03,771 - INFO - No messages found
+2025-08-09 11:26:10,787 - INFO - No messages found
+2025-08-09 11:26:17,802 - INFO - No messages found
+2025-08-09 11:26:24,815 - INFO - No messages found
+2025-08-09 11:26:31,827 - INFO - No messages found
+2025-08-09 11:26:38,839 - INFO - No messages found
+2025-08-09 11:26:45,854 - INFO - No messages found
+2025-08-09 11:26:52,869 - INFO - No messages found
+2025-08-09 11:26:59,884 - INFO - No messages found
+2025-08-09 11:27:06,892 - INFO - No messages found
+2025-08-09 11:27:13,908 - INFO - No messages found
+2025-08-09 11:27:20,920 - INFO - No messages found
+2025-08-09 11:27:27,935 - INFO - No messages found
+2025-08-09 11:27:34,950 - INFO - No messages found
+2025-08-09 11:27:41,971 - INFO - No messages found
+2025-08-09 11:27:48,979 - INFO - No messages found
+2025-08-09 11:27:55,994 - INFO - No messages found
+2025-08-09 11:28:03,012 - INFO - No messages found
+2025-08-09 11:28:08,538 - INFO - Processed order: ORD1000 for user U104, value 356.19
+2025-08-09 11:28:10,553 - INFO - Processed order: ORD1001 for user U104, value 318.83
+2025-08-09 11:28:10,559 - INFO - Processed order: ORD1002 for user U100, value 118.63
+2025-08-09 11:28:10,564 - INFO - Processed order: ORD1003 for user U102, value 250.57
+2025-08-09 11:28:10,568 - INFO - Processed order: ORD1004 for user U101, value 140.8
+2025-08-09 11:28:10,573 - INFO - Processed order: ORD1005 for user U102, value 232.19
+2025-08-09 11:28:12,593 - INFO - Processed order: ORD1006 for user U103, value 197.08
+2025-08-09 11:28:12,599 - INFO - Processed order: ORD1007 for user U102, value 443.95
+2025-08-09 11:28:12,604 - INFO - Processed order: ORD1008 for user U102, value 121.28
+2025-08-09 11:28:12,608 - INFO - Processed order: ORD1009 for user U103, value 284.16
+2025-08-09 11:28:12,612 - INFO - Processed order: ORD1010 for user U105, value 270.67
+2025-08-09 11:28:14,628 - INFO - Processed order: ORD1011 for user U101, value 150.29
+2025-08-09 11:28:14,633 - INFO - Processed order: ORD1012 for user U103, value 10.18
+2025-08-09 11:28:14,637 - INFO - Processed order: ORD1013 for user U104, value 184.88
+2025-08-09 11:28:14,641 - INFO - Processed order: ORD1014 for user U104, value 157.53
+2025-08-09 11:28:14,645 - INFO - Processed order: ORD1015 for user U100, value 28.28
+2025-08-09 11:28:16,660 - INFO - Processed order: ORD1016 for user U102, value 380.95
+2025-08-09 11:28:16,666 - INFO - Processed order: ORD1017 for user U100, value 328.17
+2025-08-09 11:28:16,671 - INFO - Processed order: ORD1018 for user U102, value 179.35
+2025-08-09 11:28:16,675 - INFO - Processed order: ORD1019 for user U100, value 322.19
+2025-08-09 11:28:23,690 - INFO - No messages found
+2025-08-09 11:28:30,704 - INFO - No messages found
+2025-08-09 11:28:37,716 - INFO - No messages found
+2025-08-09 11:28:44,734 - INFO - No messages found
+2025-08-09 11:28:51,751 - INFO - No messages found
+2025-08-09 11:28:58,764 - INFO - No messages found
+2025-08-09 11:29:05,778 - INFO - No messages found
+2025-08-09 11:29:12,792 - INFO - No messages found
+2025-08-09 11:29:19,808 - INFO - No messages found
+2025-08-09 11:29:26,826 - INFO - No messages found
+2025-08-09 11:29:33,836 - INFO - No messages found
+2025-08-09 11:29:40,846 - INFO - No messages found
+2025-08-09 11:29:47,859 - INFO - No messages found
+2025-08-09 11:29:54,883 - INFO - No messages found
+2025-08-09 11:30:01,889 - INFO - No messages found
+2025-08-09 11:30:08,903 - INFO - No messages found
+2025-08-09 11:30:15,920 - INFO - No messages found
+2025-08-09 11:30:22,930 - INFO - No messages found
+2025-08-09 11:30:29,948 - INFO - No messages found
+2025-08-09 11:30:36,962 - INFO - No messages found
+2025-08-09 11:30:43,977 - INFO - No messages found
+2025-08-09 11:30:50,994 - INFO - No messages found
+2025-08-09 11:30:58,007 - INFO - No messages found
+2025-08-09 11:31:05,031 - INFO - No messages found
+2025-08-09 11:31:12,043 - INFO - No messages found
+2025-08-09 11:31:19,057 - INFO - No messages found
+2025-08-09 11:31:26,072 - INFO - No messages found
+2025-08-09 11:31:33,084 - INFO - No messages found
+2025-08-09 11:31:40,104 - INFO - No messages found
+2025-08-09 11:31:47,125 - INFO - No messages found
+2025-08-09 11:31:54,141 - INFO - No messages found
+2025-08-09 11:32:01,156 - INFO - No messages found
+2025-08-09 11:32:08,173 - INFO - No messages found
+2025-08-09 11:32:15,187 - INFO - No messages found
+2025-08-09 11:32:22,207 - INFO - No messages found
+2025-08-09 11:32:29,228 - INFO - No messages found
+2025-08-09 11:32:36,248 - INFO - No messages found
+2025-08-09 11:32:43,270 - INFO - No messages found
+2025-08-09 11:32:50,288 - INFO - No messages found
+2025-08-09 11:32:57,300 - INFO - No messages found
+2025-08-09 11:33:04,320 - INFO - No messages found
+2025-08-09 11:33:11,335 - INFO - No messages found
+2025-08-09 11:33:18,349 - INFO - No messages found
+2025-08-09 11:33:25,367 - INFO - No messages found
+2025-08-09 11:33:32,384 - INFO - No messages found
+2025-08-09 11:33:39,401 - INFO - No messages found
+2025-08-09 11:33:46,417 - INFO - No messages found
+2025-08-09 11:33:53,435 - INFO - No messages found
+2025-08-09 11:34:00,452 - INFO - No messages found
+2025-08-09 11:39:38,057 - INFO - No messages found
+2025-08-09 11:39:45,074 - INFO - No messages found
+2025-08-09 11:39:52,093 - INFO - No messages found
+2025-08-09 11:39:59,105 - INFO - No messages found
+2025-08-09 11:40:06,119 - INFO - No messages found
+2025-08-09 11:40:13,134 - INFO - No messages found
+2025-08-09 11:40:20,145 - INFO - No messages found
+2025-08-09 11:40:27,164 - INFO - No messages found
+2025-08-09 11:40:34,174 - INFO - No messages found
+2025-08-09 11:40:41,186 - INFO - No messages found
+2025-08-09 11:40:48,201 - INFO - No messages found
+2025-08-09 11:40:55,213 - INFO - No messages found
+2025-08-09 11:41:02,224 - INFO - No messages found
+2025-08-09 11:41:09,236 - INFO - No messages found
+2025-08-09 11:41:16,250 - INFO - No messages found
+2025-08-09 11:41:23,262 - INFO - No messages found
+2025-08-09 11:41:30,279 - INFO - No messages found
+2025-08-09 11:41:37,296 - INFO - No messages found
+2025-08-09 11:41:44,311 - INFO - No messages found
+2025-08-09 11:41:51,326 - INFO - No messages found
+2025-08-09 11:41:58,338 - INFO - No messages found
+2025-08-09 11:42:05,351 - INFO - No messages found
+2025-08-09 11:42:12,363 - INFO - No messages found
+2025-08-09 11:42:17,789 - INFO - Worker started, listening to queue: orders
+2025-08-09 11:42:22,800 - INFO - No messages found
+2025-08-09 11:42:29,809 - INFO - No messages found
+2025-08-09 11:42:35,710 - INFO - Processed order: ORD1000 for user U102, value 437.95
+2025-08-09 11:42:37,723 - INFO - Processed order: ORD1001 for user U103, value 84.92
+2025-08-09 11:42:37,730 - INFO - Processed order: ORD1002 for user U103, value 168.19
+2025-08-09 11:42:37,733 - INFO - Processed order: ORD1003 for user U105, value 395.34
+2025-08-09 11:42:37,738 - INFO - Processed order: ORD1004 for user U105, value 126.55
+2025-08-09 11:42:37,741 - INFO - Processed order: ORD1005 for user U102, value 247.56
+2025-08-09 11:42:39,760 - INFO - Processed order: ORD1006 for user U102, value 103.08
+2025-08-09 11:42:39,767 - INFO - Processed order: ORD1007 for user U104, value 32.9
+2025-08-09 11:42:39,772 - INFO - Processed order: ORD1008 for user U103, value 201.72
+2025-08-09 11:42:39,777 - INFO - Processed order: ORD1009 for user U103, value 283.15
+2025-08-09 11:42:39,782 - INFO - Processed order: ORD1010 for user U102, value 448.66
+2025-08-09 11:42:41,799 - INFO - Processed order: ORD1011 for user U103, value 94.64
+2025-08-09 11:42:41,806 - INFO - Processed order: ORD1012 for user U104, value 330.71
+2025-08-09 11:42:41,812 - INFO - Processed order: ORD1013 for user U103, value 117.9
+2025-08-09 11:42:41,817 - INFO - Processed order: ORD1014 for user U100, value 198.74
+2025-08-09 11:42:41,822 - INFO - Processed order: ORD1015 for user U105, value 404.82
+2025-08-09 11:42:43,838 - INFO - Processed order: ORD1016 for user U101, value 84.06
+2025-08-09 11:42:43,844 - INFO - Processed order: ORD1017 for user U101, value 389.46
+2025-08-09 11:42:43,850 - INFO - Processed order: ORD1018 for user U101, value 442.98
+2025-08-09 11:42:43,854 - INFO - Processed order: ORD1019 for user U103, value 199.76
+2025-08-09 11:42:50,869 - INFO - No messages found
+2025-08-09 11:42:57,887 - INFO - No messages found
+2025-08-09 11:43:04,899 - INFO - No messages found
+2025-08-09 11:43:11,913 - INFO - No messages found
+2025-08-09 11:43:18,932 - INFO - No messages found
+2025-08-09 11:43:25,951 - INFO - No messages found
+2025-08-09 11:43:32,967 - INFO - No messages found
+2025-08-09 11:43:39,980 - INFO - No messages found
+2025-08-09 11:43:46,991 - INFO - No messages found
+2025-08-09 11:43:54,006 - INFO - No messages found
+2025-08-09 11:44:01,025 - INFO - No messages found
+2025-08-09 11:44:08,040 - INFO - No messages found
+2025-08-09 11:44:15,064 - INFO - No messages found
+2025-08-09 11:44:22,084 - INFO - No messages found
+2025-08-09 11:44:29,106 - INFO - No messages found
+2025-08-09 11:44:36,123 - INFO - No messages found
+2025-08-09 11:44:43,139 - INFO - No messages found
+2025-08-09 11:44:50,152 - INFO - No messages found
+2025-08-09 11:44:57,174 - INFO - No messages found
+2025-08-09 11:45:04,188 - INFO - No messages found
+2025-08-09 11:45:11,208 - INFO - No messages found
+2025-08-09 11:45:18,227 - INFO - No messages found
+2025-08-09 11:45:25,246 - INFO - No messages found
+2025-08-09 11:45:32,255 - INFO - No messages found
+2025-08-09 11:45:39,270 - INFO - No messages found
+2025-08-09 11:45:46,291 - INFO - No messages found
+2025-08-09 11:45:53,307 - INFO - No messages found

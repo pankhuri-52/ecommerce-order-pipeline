@@ -29,6 +29,9 @@ services:
   worker:
     build: ./worker
     container_name: sqs-worker
+    volumes:
+      - ./logs:/app/logs
     depends_on:
       - localstack
       - redis
+
