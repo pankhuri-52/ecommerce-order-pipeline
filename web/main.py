@@ -4,6 +4,7 @@ import time
 import logging
 import os
 from dotenv import load_dotenv
+from datetime import datetime, timedelta
 
 # Load environment variables
 load_dotenv()
@@ -35,7 +36,7 @@ async def log_requests(request: Request, call_next):
     start_time = time.time()
     
     # Log incoming request
-    logger.info(f"➤ {request.method} {request.url.path} - Client: {request.client.host}")
+    logger.info(f"{request.method} {request.url.path} - Client: {request.client.host}")
     
     # Process request
     response = await call_next(request)
@@ -44,9 +45,9 @@ async def log_requests(request: Request, call_next):
     process_time = time.time() - start_time
     
     # Log response
-    status_emoji = "✅" if response.status_code < 400 else "❌"
+    status = "Success" if response.status_code < 400 else "Failed"
     logger.info(
-        f"{status_emoji} {request.method} {request.url.path} - "
+        f"{status} {request.method} {request.url.path} - "
         f"Status: {response.status_code} - Time: {process_time:.3f}s"
     )
     
@@ -55,9 +56,9 @@ async def log_requests(request: Request, call_next):
     
     return response
 
+# health check endpoint for monitoring service availability
 @app.get("/health")
 def health_check():
-    """Health check endpoint for monitoring service availability"""
     try:
         # Test Redis connection
         ping_time = time.time()
@@ -74,27 +75,6 @@ def health_check():
         logger.error(f"Health check failed: {str(e)}")
         raise HTTPException(status_code=503, detail=f"Unhealthy: {str(e)}")
 
-@app.get("/metrics")
-def get_metrics():
-    """Metrics endpoint for monitoring system performance"""
-    try:
-        # Basic metrics for monitoring
-        global_stats = redis_client.hgetall("global:stats")
-        users_count = redis_client.zcard("users:by_spend")
-        
-        return {
-            "total_orders": int(global_stats.get("total_orders", 0)),
-            "total_revenue": float(global_stats.get("total_revenue", 0.0)),
-            "unique_users": users_count,
-            "average_order_value": (
-                float(global_stats.get("total_revenue", 0.0)) / 
-                max(int(global_stats.get("total_orders", 1)), 1)
-            ),
-            "timestamp": time.time()
-        }
-    except Exception as e:
-        logger.error(f"Metrics collection failed: {str(e)}")
-        raise HTTPException(status_code=503, detail=f"Metrics unavailable: {str(e)}")
 
 @app.get("/users/{user_id}/stats")
 def get_user_stats(user_id: str):
@@ -120,14 +100,15 @@ def top_spenders(limit: int = 5):
     top_users = redis_client.zrevrange("users:by_spend", 0, limit-1, withscores=True)
     return [{"user_id": user, "total_spend": spend} for user, spend in top_users]
 
+
 @app.get("/stats/top-buyers")
 def top_buyers(limit: int = 5):
     top_users = redis_client.zrevrange("users:by_count", 0, limit-1, withscores=True)
     return [{"user_id": user, "order_count": int(count)} for user, count in top_users]
 
+
 @app.get("/stats/by-date")
 def stats_by_date(start_date: str, end_date: str):
-    from datetime import datetime, timedelta
     
     start = datetime.strptime(start_date, "%Y-%m-%d")
     end = datetime.strptime(end_date, "%Y-%m-%d")

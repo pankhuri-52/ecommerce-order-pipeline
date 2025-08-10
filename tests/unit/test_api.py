@@ -1,5 +1,6 @@
 import pytest
 from fastapi.testclient import TestClient
+import web.main as main
 
 @pytest.fixture
 def client(monkeypatch):
@@ -8,7 +9,6 @@ def client(monkeypatch):
         def hgetall(self, key):
             return {"total_orders": "5", "total_revenue": "500.0"}
 
-    import web.main as main
     main.redis_client = FakeRedis()
 
     return TestClient(main.app)
