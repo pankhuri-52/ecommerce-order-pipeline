@@ -164,22 +164,6 @@ GET /health
 }
 ```
 
-### **7. Metrics**
-```
-GET /metrics
-```
-
-**Response:**
-```json
-{
-  "total_orders": 150,
-  "total_revenue": 15000.00,
-  "unique_users": 45,
-  "average_order_value": 100.00,
-  "timestamp": 1673875200.0
-}
-```
-
 ---
 
 ## 📝 Logging & Monitoring
@@ -187,7 +171,6 @@ GET /metrics
 - **Worker logs**: Stored in `./logs/YYYY-MM-DD.log`
 - **API request logs**: Real-time logging with response times
 - **Health monitoring**: `/health` endpoint for service status
-- **Performance metrics**: `/metrics` endpoint for system stats
 - **Configurable log levels**: Set via `LOG_LEVEL` environment variable
 
 ---
@@ -216,70 +199,5 @@ LOG_LEVEL=INFO  # DEBUG, INFO, WARNING, ERROR
 
 ## 🧪 Running Tests
 
-We use `pytest` for unit and integration testing.
+Used `pytest` for unit testing.
 
-### Unit Tests
-Run all fast tests that don’t require services:
-```bash
-pytest
-
-
----
-
-## 📈 Scaling Considerations
-
-- **Redis sharding** for very large datasets
-- Use **Redis Streams** or **Kafka** for high-throughput ingestion
-- Move historical aggregates to a **persistent DB** (e.g., PostgreSQL, BigQuery)
-- Maintain **time-series keys** for efficient date-range queries
-
----
-
-## 📊 Design Diagram
-
-```mermaid
-flowchart LR
-    subgraph Producer
-        P1[populate_sqs.py<br>(sample data)]
-        P2[CLI via awslocal]
-    end
-
-    subgraph Localstack_SQS
-        SQS[SQS Queue<br>(orders)]
-    end
-
-    subgraph Consumer
-        W1[Python Worker<br>(consumer.py)]
-        V1[Validation & Transformation]
-        L1[Logging<br>/logs/*.log]
-    end
-
-    subgraph DataStore
-        R1[(Redis)]
-    end
-
-    subgraph API
-        A1[FastAPI App<br>(main.py)]
-        Q1[Basic Stats<br>/stats/global]
-        Q2[Advanced Queries<br>/stats/top-users]
-    end
-
-    P1 --> SQS
-    P2 --> SQS
-    SQS --> W1
-    W1 --> V1
-    V1 -->|Valid Orders| R1
-    V1 -->|Invalid Orders| L1
-    A1 --> R1
-    A1 --> Q1
-    A1 --> Q2
-```
-
----
-
-## 📬 Author
-
-**Pankhuri Trikha**
-Data Engineer | Python | Big Data | Cloud
-
----
