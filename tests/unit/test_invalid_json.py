@@ -3,8 +3,6 @@ import worker.worker as worker_module
 import logging
 
 def test_invalid_json_message(caplog):
-    """Test that invalid JSON messages are handled gracefully"""
-    
     # Set logging level to capture warnings
     caplog.set_level(logging.ERROR)
     
