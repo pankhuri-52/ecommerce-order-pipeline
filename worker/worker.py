@@ -18,7 +18,7 @@ REDIS_PORT = int(os.getenv("REDIS_PORT", "6379"))
 LOG_LEVEL = os.getenv("LOG_LEVEL", "INFO").upper()
 AWS_REGION = os.getenv("AWS_REGION", "us-east-1")
 
-# ---------- Logging Setup ----------
+# Logging Setup 
 log_filename = f"logs/{datetime.now().strftime('%Y-%m-%d')}.log"
 logging.basicConfig(
     filename=log_filename,
@@ -27,7 +27,7 @@ logging.basicConfig(
 )
 logger = logging.getLogger()
 
-# ---------- SQS Connection ----------
+# SQS Connection
 def get_sqs_client():
     return boto3.client(
         "sqs",
@@ -37,37 +37,41 @@ def get_sqs_client():
         aws_secret_access_key=os.getenv("AWS_SECRET_ACCESS_KEY", "test")
     )
 
-# ---------- Redis Connection ----------
+# Redis Connection
 def get_redis_client():
     return redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 def get_queue_url(sqs_client):
-    """Get queue URL, with error handling for missing queue"""
     try:
         response = sqs_client.get_queue_url(QueueName=QUEUE_NAME)
         return response["QueueUrl"]
+
     except sqs_client.exceptions.QueueDoesNotExist:
         logger.error(f"Queue '{QUEUE_NAME}' does not exist!")
-        logger.error("Please create the queue first:")
-        logger.error(f"docker exec -it localstack awslocal sqs create-queue --queue-name {QUEUE_NAME}")
-        raise
+        response = sqs_client.create_queue(QueueName=QUEUE_NAME)
+        logger.info(f"Created queue")
+        return response["QueueUrl"]
+
     except Exception as e:
         logger.error(f"Failed to get queue URL: {e}")
         raise
 
-# ---------- Validation ----------
+#  Validation
 def validate_order(order):
     required_fields = ["order_id", "user_id", "order_value", "items"]
+
+    # Required fields validation
     for field in required_fields:
         if field not in order:
             logger.warning(f"Missing required field: {field} in order {order}")
             return False
 
+    # Data type validation
     if not isinstance(order["order_value"], (int, float)):
         logger.warning(f"Invalid order_value type in order {order}")
         return False
 
-    # Cross-check order value
+    # Business logic validation
     calculated_value = sum(item["quantity"] * item["price_per_unit"] for item in order["items"])
     if round(calculated_value, 2) != round(order["order_value"], 2):
         logger.warning(f"Order value mismatch in {order['order_id']}: expected {calculated_value}, got {order['order_value']}")
@@ -75,7 +79,7 @@ def validate_order(order):
 
     return True
 
-# ---------- Processing ----------
+# Processing
 def process_message(message_body, redis_client):
     try:
         order = json.loads(message_body)
@@ -108,10 +112,11 @@ def process_message(message_body, redis_client):
 
     except json.JSONDecodeError:
         logger.error(f"Failed to decode message: {message_body}")
+        
     except Exception as e:
         logger.error(f"Unexpected error: {str(e)}")
 
-# ---------- Main Worker Loop ----------
+# Main Worker Loop
 def main():
     sqs_client = get_sqs_client()
     redis_client = get_redis_client()
