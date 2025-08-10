@@ -42,8 +42,18 @@ def get_redis_client():
     return redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
 
 def get_queue_url(sqs_client):
-    response = sqs_client.get_queue_url(QueueName=QUEUE_NAME)
-    return response["QueueUrl"]
+    """Get queue URL, with error handling for missing queue"""
+    try:
+        response = sqs_client.get_queue_url(QueueName=QUEUE_NAME)
+        return response["QueueUrl"]
+    except sqs_client.exceptions.QueueDoesNotExist:
+        logger.error(f"Queue '{QUEUE_NAME}' does not exist!")
+        logger.error("Please create the queue first:")
+        logger.error(f"docker exec -it localstack awslocal sqs create-queue --queue-name {QUEUE_NAME}")
+        raise
+    except Exception as e:
+        logger.error(f"Failed to get queue URL: {e}")
+        raise
 
 # ---------- Validation ----------
 def validate_order(order):

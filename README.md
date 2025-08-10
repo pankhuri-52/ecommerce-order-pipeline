@@ -72,7 +72,9 @@ This starts:
 - FastAPI app (`localhost:8000`)
 - Worker (SQS → Redis)
 
-### 3️⃣ Create SQS Queue
+### 3️⃣ Create SQS Queue (Optional)
+
+The system will automatically create the queue if it doesn't exist, but you can create it manually:
 
 ```bash
 docker exec -it localstack awslocal sqs create-queue --queue-name orders
